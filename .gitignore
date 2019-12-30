@@ -1,0 +1,7 @@
+*.log
+gravity.list
+*.bak
+setupVars.conf.update.bak
+*.domains
+*.db
+
