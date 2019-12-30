@@ -1,7 +1,9 @@
 *.log
-gravity.list
+# Backup files
 *.bak
-setupVars.conf.update.bak
+# List of domains
 *.domains
+# Pi-hole history 
 *.db
-
+# Main domain list
+gravity.list
