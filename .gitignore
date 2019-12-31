@@ -7,3 +7,5 @@
 *.db
 # Main domain list
 gravity.list
+# Host names (changes with container name)
+local.list
