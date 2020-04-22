@@ -1,15 +1,11 @@
+# Update container with
+# docker-compose up --detach --build
+# TODO: needs testing
+
 version: "3"
 services:
 
-#  portainer:
-#    container_name: portainer
-#    image: portainer/portainer
-#    restart: unless-stopped
-#    ports: 
-#      - 9000:9000
-
-
-  # https://hub.docker.com/r/diginc/pi-hole/
+  # https://hub.docker.com/r/pihole/pihole/
   # https://github.com/pi-hole/docker-pi-hole
   pihole:
     container_name: pihole

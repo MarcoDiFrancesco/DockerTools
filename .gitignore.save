@@ -1,0 +1,11 @@
+*.log
+# Backup files
+*.bak
+# List of domains
+*.domains
+# Pi-hole history 
+*.db
+# Main domain list
+gravity.list
+# Host names (changes every time)
+local.list
