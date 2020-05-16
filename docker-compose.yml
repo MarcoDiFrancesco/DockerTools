@@ -1,6 +1,5 @@
 # Update container with
 # docker-compose up --detach --build
-# TODO: needs testing
 
 version: "3"
 services:
@@ -17,33 +16,35 @@ services:
 #      - "67:67/udp"
       - "80:80/tcp"
 #      - "443:443/tcp"
-
-    # https://github.com/pi-hole/docker-pi-hole#environment-variables
     environment:
       TZ: 'Europe/Rome'
-#      WEBPASSWORD: '2212'
-      # 192.168.1.1
-      # 127.0.0.1
-      DNS1: '1.1.1.1' # Used for PiVpn 127.0.0.1
-      DNS2: '8.8.8.8' # 8.8.8.8
-#      DNSSEC: 'false'
-#      DNS_BOGUS_PRIV: 'true'
-#      CONDITIONAL_FORWARDING: 'false'
-#      ServerIP: '192.168.1.1' # Not required
-#      ServerIPv6: ''
-#      IPv6: 'true'
-
-    # Volumes store your data between container upgrades
+      DNS1: '1.1.1.1'
+      DNS2: '8.8.8.8'
     volumes:
-      - './etc-resolv.conf:/etc/resolv.conf'
+    # - './etc-resolv.conf:/etc/resolv.conf'
       - './etc-pihole/:/etc/pihole/'
       - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
+    dns:
+      - 127.0.0.1
+      - 1.1.1.1
+  watchtower:
+    container_name: watchtower
+    image: containrrr/watchtower
+    restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
 
-    # Replaced by copying resolv.conf
-#    dns:
-#      - '127.0.0.1'
-#      - '1.1.1.1'
+  portainer:
+    container_name: portainer
+    image: portainer/portainer
+    restart: unless-stopped
+    ports:
+      - 8000:8000
+      - 9000:9000
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
 
-    # Used for DHCP server
-#    cap_add:
-#      - NET_ADMIN
+volumes:
+  portainer_data:
+
